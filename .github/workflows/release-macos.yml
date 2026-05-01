@@ -11,6 +11,13 @@ jobs:
     runs-on: macos-14
     permissions:
       contents: write
+    env:
+      MACOS_CERT_BASE64: ${{ secrets.MACOS_CERT_BASE64 }}
+      MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
+      MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
 
     steps:
       - name: Checkout release tag
@@ -40,10 +47,7 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "dist/Gaia.app.zip"
 
       - name: Import signing certificate (optional)
-        if: ${{ secrets.MACOS_CERT_BASE64 != '' && secrets.MACOS_CERT_PASSWORD != '' && secrets.MACOS_SIGNING_IDENTITY != '' }}
-        env:
-          MACOS_CERT_BASE64: ${{ secrets.MACOS_CERT_BASE64 }}
-          MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
+        if: ${{ env.MACOS_CERT_BASE64 != '' && env.MACOS_CERT_PASSWORD != '' && env.MACOS_SIGNING_IDENTITY != '' }}
         run: |
           echo "$MACOS_CERT_BASE64" | base64 --decode > signing.p12
           security create-keychain -p "" build.keychain
@@ -53,20 +57,14 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
 
       - name: Sign app artifact (optional)
-        if: ${{ secrets.MACOS_CERT_BASE64 != '' && secrets.MACOS_CERT_PASSWORD != '' && secrets.MACOS_SIGNING_IDENTITY != '' }}
-        env:
-          SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+        if: ${{ env.MACOS_CERT_BASE64 != '' && env.MACOS_CERT_PASSWORD != '' && env.MACOS_SIGNING_IDENTITY != '' }}
         run: |
           APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -path "*/Build/Products/Release/Gaia.app" | head -n 1)
-          codesign --force --deep --options runtime --sign "$SIGNING_IDENTITY" "$APP_PATH"
+          codesign --force --deep --options runtime --sign "$MACOS_SIGNING_IDENTITY" "$APP_PATH"
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "dist/Gaia.app.zip"
 
       - name: Notarize app (optional)
-        if: ${{ secrets.APPLE_ID != '' && secrets.APPLE_APP_PASSWORD != '' && secrets.APPLE_TEAM_ID != '' }}
-        env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        if: ${{ env.APPLE_ID != '' && env.APPLE_APP_PASSWORD != '' && env.APPLE_TEAM_ID != '' }}
         run: |
           xcrun notarytool submit "dist/Gaia.app.zip" \
             --apple-id "$APPLE_ID" \

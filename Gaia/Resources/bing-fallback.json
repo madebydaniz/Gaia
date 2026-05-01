@@ -1,0 +1,22 @@
+[
+  {
+    "id": "bing_fallback_gaia",
+    "source": "bing",
+    "title": "Bing daily image",
+    "description": "Bundled fallback wallpaper metadata for offline startup.",
+    "imageURL": "https://www.bing.com/th?id=OHR.Fallback_1920x1080.jpg",
+    "thumbnailURL": "https://www.bing.com/th?id=OHR.Fallback_400x240.jpg",
+    "sourcePageURL": "https://www.bing.com/",
+    "copyright": "Bing",
+    "locationName": null,
+    "date": "2026-04-30T00:00:00Z",
+    "width": 1920,
+    "height": 1080,
+    "localImagePath": null,
+    "localThumbnailPath": null,
+    "isFavorite": false,
+    "isDownloaded": false,
+    "lastUsedAt": null,
+    "downloadedAt": null
+  }
+]

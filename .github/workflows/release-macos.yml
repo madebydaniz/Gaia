@@ -42,7 +42,13 @@ jobs:
         if: ${{ github.event_name != 'release' && (github.event_name != 'workflow_dispatch' || github.event.inputs.release_tag == '') }}
 
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
+        run: |
+          if [ -d "/Applications/Xcode_16.4.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.4.app
+          else
+            sudo xcode-select -s /Applications/Xcode.app
+          fi
+          xcodebuild -version
 
       - name: Build DMG
         run: ./scripts/make-dmg.sh

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.3...gaia-v0.1.4) (2026-05-02)
+
+
+### Bug Fixes
+
+* **ci:** auto-build and upload release assets on tag push ([822894b](https://github.com/madebydaniz/Gaia/commit/822894b1e4235ed34f06c60d7ce10eccd317f27d))
+
 ## [0.1.3](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.2...gaia-v0.1.3) (2026-05-02)
 
 

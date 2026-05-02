@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.8...gaia-v0.1.9) (2026-05-02)
+
+
+### Bug Fixes
+
+* **version:** keep app marketing version in sync with releases ([f3f0797](https://github.com/madebydaniz/Gaia/commit/f3f079785e4ffec7b686edf2f7145356bb9b46aa))
+
 ## [0.1.8](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.7...gaia-v0.1.8) (2026-05-02)
 
 

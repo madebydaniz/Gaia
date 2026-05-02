@@ -2,6 +2,11 @@ name: Release macOS
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Existing release tag to attach assets to (example: gaia-v0.1.1)"
+        required: false
+        type: string
   release:
     types:
       - published
@@ -26,9 +31,15 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      - name: Checkout dispatch tag
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.release_tag != '' }}
+        with:
+          ref: ${{ github.event.inputs.release_tag }}
+
       - name: Checkout branch
         uses: actions/checkout@v4
-        if: ${{ github.event_name != 'release' }}
+        if: ${{ github.event_name != 'release' && (github.event_name != 'workflow_dispatch' || github.event.inputs.release_tag == '') }}
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
@@ -73,9 +84,10 @@ jobs:
             --wait
 
       - name: Upload release asset
-        if: ${{ github.event_name == 'release' }}
+        if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.release_tag != '') }}
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.release.tag_name || github.event.inputs.release_tag }}
           files: |
             dist/Gaia.dmg
             dist/Gaia.app.zip

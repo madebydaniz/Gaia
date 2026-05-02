@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.4...gaia-v0.1.5) (2026-05-02)
+
+
+### Bug Fixes
+
+* **ci:** dispatch macOS release build after release-please ([5bc869b](https://github.com/madebydaniz/Gaia/commit/5bc869b701654b9e498e439167a0a53624d37690))
+* **update:** parse component-prefixed release tags for version checks ([37dcdc3](https://github.com/madebydaniz/Gaia/commit/37dcdc3f6c3f0847c0e2e754d06317041533deac))
+
 ## [0.1.4](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.3...gaia-v0.1.4) (2026-05-02)
 
 

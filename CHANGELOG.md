@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.2...gaia-v0.1.3) (2026-05-02)
+
+
+### Bug Fixes
+
+* **ci:** use setup-xcode latest-stable on macos-15 ([2d94701](https://github.com/madebydaniz/Gaia/commit/2d94701eaf6db5437f37ee44ab6f3a3a3e0e9303))
+
 ## [0.1.2](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.1...gaia-v0.1.2) (2026-05-02)
 
 

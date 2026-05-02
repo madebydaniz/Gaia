@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.5...gaia-v0.1.6) (2026-05-02)
+
+
+### Bug Fixes
+
+* **ci:** dispatch release workflow via gh api without checkout ([2f5d394](https://github.com/madebydaniz/Gaia/commit/2f5d3947d8d4027eb56dbfdfa2c5092e6f0c3a8b))
+
 ## [0.1.5](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.4...gaia-v0.1.5) (2026-05-02)
 
 

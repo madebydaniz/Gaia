@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.7...gaia-v0.1.8) (2026-05-02)
+
+
+### Bug Fixes
+
+* **update:** improve update notification delivery and check UX ([9924fd8](https://github.com/madebydaniz/Gaia/commit/9924fd833a7302fd89d5fa3542b77c71653de709))
+
 ## [0.1.7](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.6...gaia-v0.1.7) (2026-05-02)
 
 

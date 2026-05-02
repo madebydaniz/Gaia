@@ -6,7 +6,10 @@
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     ".": {
-      "component": "gaia"
+      "component": "gaia",
+      "extra-files": [
+        "Gaia.xcodeproj/project.pbxproj"
+      ]
     }
   },
   "changelog-sections": [

@@ -13,7 +13,7 @@ struct AboutSettingsView: View {
                 VStack(alignment: .leading) {
                     Text("Gaia")
                         .font(.title2.bold())
-                    Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")")
+                    Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.0.0")")
                         .foregroundStyle(.secondary)
                 }
             }

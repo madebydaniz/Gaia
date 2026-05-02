@@ -10,6 +10,10 @@ on:
   release:
     types:
       - published
+  push:
+    tags:
+      - "gaia-v*"
+      - "v*"
 
 jobs:
   build:
@@ -30,6 +34,12 @@ jobs:
         if: ${{ github.event_name == 'release' }}
         with:
           ref: ${{ github.event.release.tag_name }}
+
+      - name: Checkout pushed tag
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Checkout dispatch tag
         uses: actions/checkout@v4
@@ -89,17 +99,17 @@ jobs:
             --wait
 
       - name: Upload release asset
-        if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.release_tag != '') }}
+        if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.release_tag != '') || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.release.tag_name || github.event.inputs.release_tag }}
+          tag_name: ${{ github.event.release.tag_name || github.event.inputs.release_tag || github.ref_name }}
           files: |
             dist/Gaia.dmg
             dist/Gaia.app.zip
           generate_release_notes: true
 
       - name: Upload artifact
-        if: ${{ github.event_name != 'release' }}
+        if: ${{ github.event_name != 'release' && !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) }}
         uses: actions/upload-artifact@v4
         with:
           name: Gaia-macOS

@@ -1,0 +1,57 @@
+name: Sync App Marketing Version
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".release-please-manifest.json"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Read release version from manifest
+        id: version
+        run: |
+          VERSION=$(python3 - <<'PY'
+          import json
+          with open(".release-please-manifest.json", "r", encoding="utf-8") as f:
+              data = json.load(f)
+          print(data.get(".", "").strip())
+          PY
+          )
+          if [ -z "$VERSION" ]; then
+            echo "Version not found in manifest."
+            exit 1
+          fi
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Sync MARKETING_VERSION in Xcode project
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          sed -i.bak -E "s/MARKETING_VERSION = [0-9]+(\.[0-9]+){0,2};/MARKETING_VERSION = ${VERSION};/g" Gaia.xcodeproj/project.pbxproj
+          rm -f Gaia.xcodeproj/project.pbxproj.bak
+
+      - name: Commit and push if needed
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          if git diff --quiet -- Gaia.xcodeproj/project.pbxproj; then
+            echo "No MARKETING_VERSION changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Gaia.xcodeproj/project.pbxproj
+          git commit -m "chore(version): sync MARKETING_VERSION to ${VERSION}"
+          git push origin main

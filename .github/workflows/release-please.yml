@@ -36,4 +36,7 @@ jobs:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          gh workflow run release-macos.yml -f release_tag="$TAG_NAME"
+          gh api \
+            repos/${{ github.repository }}/actions/workflows/release-macos.yml/dispatches \
+            -f ref=main \
+            -f inputs[release_tag]="$TAG_NAME"

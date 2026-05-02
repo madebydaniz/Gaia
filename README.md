@@ -120,24 +120,6 @@ Optional (recommended) for better DMG layout:
 brew install create-dmg
 ```
 
-## Release Automation
-
-Releases are automated from `main` using Conventional Commits + Release Please.
-
-- `feat:` -> minor bump
-- `fix:` -> patch bump
-- `feat!:` or `BREAKING CHANGE:` -> major bump
-
-Flow:
-
-1. Push commits to `main` with Conventional Commit messages.
-2. `Release Please` opens/updates a release PR with generated changelog.
-3. Merge release PR.
-4. Tag + GitHub Release are created automatically (`vX.Y.Z`).
-5. macOS release workflow builds and uploads:
-   - `Gaia.dmg`
-   - `Gaia.app.zip`
-
 ## Data Source Licensing & Attribution
 
 Wallpaper copyrights remain with their original owners/providers.

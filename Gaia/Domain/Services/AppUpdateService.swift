@@ -46,7 +46,11 @@ struct GitHubAppUpdateService: AppUpdateChecking {
     }
 
     private func normalizedVersion(_ raw: String) -> String {
-        raw.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "^v", with: "", options: .regularExpression)
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let range = trimmed.range(of: #"\d+(?:\.\d+){0,2}"#, options: .regularExpression) {
+            return String(trimmed[range])
+        }
+        return trimmed.replacingOccurrences(of: "^v", with: "", options: .regularExpression)
     }
 
     private func compareVersions(lhs: String, rhs: String) -> Int {

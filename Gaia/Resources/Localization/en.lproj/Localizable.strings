@@ -140,5 +140,6 @@
 "about.update.up_to_date" = "You are using the latest version.";
 "about.update.not_checked" = "Update status has not been checked yet.";
 "about.update.check_now" = "Check now";
+"about.update.checking" = "Checking latest release...";
 "update.notification.title" = "Gaia update available";
 "update.notification.body" = "Version %1$@ is ready to download.";

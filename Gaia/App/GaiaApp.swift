@@ -6,12 +6,14 @@ struct GaiaApp: App {
     @StateObject private var preferences = PreferencesService()
     @StateObject private var viewModel: WallpaperViewModel
     private let scheduler: WallpaperScheduler
+    private let updateScheduler: AppUpdateScheduler
 
     init() {
         let dependencies = AppDependencies.live()
         _viewModel = StateObject(wrappedValue: dependencies.viewModel)
         _preferences = StateObject(wrappedValue: dependencies.preferences)
         scheduler = dependencies.scheduler
+        updateScheduler = dependencies.updateScheduler
     }
 
     var body: some Scene {
@@ -24,6 +26,7 @@ struct GaiaApp: App {
                     await viewModel.loadInitialData()
                     await viewModel.checkForUpdatesIfNeeded(onLaunch: true)
                     scheduler.start()
+                    updateScheduler.start()
                 }
         } label: {
             Image("MenuBarLogo")
@@ -46,6 +49,7 @@ private struct AppDependencies {
     let preferences: PreferencesService
     let viewModel: WallpaperViewModel
     let scheduler: WallpaperScheduler
+    let updateScheduler: AppUpdateScheduler
 
     static func live() -> AppDependencies {
         let preferences = PreferencesService()
@@ -99,10 +103,37 @@ private struct AppDependencies {
         let scheduler = WallpaperScheduler(preferences: preferences) {
             await viewModel.changeNow()
         }
+        let updateScheduler = AppUpdateScheduler(intervalHours: 6) {
+            await viewModel.checkForUpdates()
+        }
         return AppDependencies(
             preferences: preferences,
             viewModel: viewModel,
-            scheduler: scheduler
+            scheduler: scheduler,
+            updateScheduler: updateScheduler
         )
+    }
+}
+
+@MainActor
+private final class AppUpdateScheduler {
+    private let checkAction: @MainActor () async -> Void
+    private var task: Task<Void, Never>?
+    private let intervalSeconds: UInt64
+
+    init(intervalHours: Int, checkAction: @escaping @MainActor () async -> Void) {
+        self.intervalSeconds = UInt64(max(1, intervalHours)) * 60 * 60
+        self.checkAction = checkAction
+    }
+
+    func start() {
+        task?.cancel()
+        task = Task { [intervalSeconds, checkAction] in
+            while !Task.isCancelled {
+                try? await Task.sleep(nanoseconds: intervalSeconds * 1_000_000_000)
+                if Task.isCancelled { return }
+                await checkAction()
+            }
+        }
     }
 }

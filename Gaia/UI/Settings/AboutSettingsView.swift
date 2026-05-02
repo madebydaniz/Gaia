@@ -63,14 +63,21 @@ struct AboutSettingsView: View {
                     Button {
                         Task { await viewModel.checkForUpdates() }
                     } label: {
-                        if viewModel.isCheckingForUpdate {
-                            ProgressView()
-                                .controlSize(.small)
-                        } else {
+                        HStack(spacing: 8) {
                             Text("about.update.check_now")
+                            if viewModel.isCheckingForUpdate {
+                                ProgressView()
+                                    .controlSize(.small)
+                            }
                         }
                     }
                     .disabled(viewModel.isCheckingForUpdate)
+
+                    if viewModel.isCheckingForUpdate {
+                        Text("about.update.checking")
+                            .foregroundStyle(.secondary)
+                            .font(.caption)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(4)

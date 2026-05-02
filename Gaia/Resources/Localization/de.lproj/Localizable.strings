@@ -140,5 +140,6 @@
 "about.update.up_to_date" = "Du verwendest bereits die neueste Version.";
 "about.update.not_checked" = "Update-Status wurde noch nicht gepruft.";
 "about.update.check_now" = "Jetzt prufen";
+"about.update.checking" = "Neueste Version wird gepruft...";
 "update.notification.title" = "Gaia-Update verfugbar";
 "update.notification.body" = "Version %1$@ steht zum Download bereit.";

@@ -140,5 +140,6 @@
 "about.update.up_to_date" = "از آخرين نسخه استفاده مي‌کني.";
 "about.update.not_checked" = "وضعيت به‌روزرساني هنوز بررسي نشده است.";
 "about.update.check_now" = "بررسي الان";
+"about.update.checking" = "در حال بررسي آخرين نسخه...";
 "update.notification.title" = "به‌روزرساني Gaia موجود است";
 "update.notification.body" = "نسخه %1$@ آماده دانلود است.";

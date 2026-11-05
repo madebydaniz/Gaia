@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.1.10](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.9...gaia-v0.1.10) (2026-11-05)
+
+
+### Features
+
+* **settings:** manage and validate wallpaper provider keys ([4f7b9f3](https://github.com/madebydaniz/Gaia/commit/4f7b9f39b6870404118be5aef40d75ab36d5f676))
+
+
+### Bug Fixes
+
+* **release:** build macOS packages with the tagged version ([64e46c2](https://github.com/madebydaniz/Gaia/commit/64e46c2f15c279a0b2158bf1a9dba9580d4e8837))
+
+
+### Documentation
+
+* **settings:** clarify provider key setup in Gaia ([eca9401](https://github.com/madebydaniz/Gaia/commit/eca94016f6c8f96ab53b70bb9e24f67fae5b2ed3))
+
+
+### Chores
+
+* merge macOS release version fix ([dbaeaf9](https://github.com/madebydaniz/Gaia/commit/dbaeaf9964637e1d807ecac9e41cff1ffddddbc9))
+* merge provider API key settings ([b63243e](https://github.com/madebydaniz/Gaia/commit/b63243e8754e85669548c7685df4c0087bfdfc22))
+* **version:** sync MARKETING_VERSION to 0.1.9 ([e1cbe39](https://github.com/madebydaniz/Gaia/commit/e1cbe3972a7b713a3456f40ba2b56b321af3d11e))
+
 ## [0.1.9](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.8...gaia-v0.1.9) (2026-05-02)
 
 

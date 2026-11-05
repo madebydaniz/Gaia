@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.11](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.10...gaia-v0.1.11) (2026-11-05)
+
+
+### Documentation
+
+* explain how to install Gaia on macOS ([78646e5](https://github.com/madebydaniz/Gaia/commit/78646e50fa6e257d4ecd5046959954ad741f1032))
+
+
+### Chores
+
+* **version:** sync MARKETING_VERSION to 0.1.10 ([efae4c2](https://github.com/madebydaniz/Gaia/commit/efae4c2e758c6ba80f6978b8cb25a9e0c2f42389))
+
 ## [0.1.10](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.9...gaia-v0.1.10) (2026-11-05)
 
 

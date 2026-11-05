@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1752F29BCAD489E87326B13 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		A248F6AB2FA2C7700054CC46 /* Gaia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A248F6B82FA2C7710054CC46 /* GaiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GaiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A248F6C22FA2C7710054CC46 /* GaiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GaiaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		A248F6A22FA2C7700054CC46 = {
 			isa = PBXGroup;
 			children = (
+				E1752F29BCAD489E87326B13 /* Version.xcconfig */,
 				A248F6AD2FA2C7700054CC46 /* Gaia */,
 				A248F6BB2FA2C7710054CC46 /* GaiaTests */,
 				A248F6C52FA2C7710054CC46 /* GaiaUITests */,
@@ -273,6 +275,7 @@
 /* Begin XCBuildConfiguration section */
 		A248F6CA2FA2C7710054CC46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1752F29BCAD489E87326B13 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -337,6 +340,7 @@
 		};
 		A248F6CB2FA2C7710054CC46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1752F29BCAD489E87326B13 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -416,7 +420,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.Gaia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -454,7 +457,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.Gaia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -476,7 +478,6 @@
 				DEVELOPMENT_TEAM = 9F9JHBY6QF;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.4;
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.GaiaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -497,7 +498,6 @@
 				DEVELOPMENT_TEAM = 9F9JHBY6QF;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.4;
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.GaiaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -516,7 +516,6 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9F9JHBY6QF;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.GaiaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -535,7 +534,6 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9F9JHBY6QF;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 0.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madebydaniz.GaiaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;

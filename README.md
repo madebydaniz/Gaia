@@ -17,11 +17,17 @@ Reference:
 
 - [Gaia (Wikipedia)](https://en.wikipedia.org/wiki/Gaia)
 
-## Download
+## Install on macOS
 
-Download the latest build from:
+1. Download [Gaia.dmg from the latest official release](https://github.com/madebydaniz/Gaia/releases/latest/download/Gaia.dmg).
+2. Open the DMG in Finder and drag **Gaia.app** into **Applications**.
+3. Open **Gaia** from **Applications**. If macOS says it cannot verify Gaia, dismiss the alert. For a copy downloaded from the official release above, run this command in Terminal to remove the quarantine flag from Gaia and open it:
 
-- [Releases](https://github.com/madebydaniz/Gaia/releases)
+   ```bash
+   xattr -d com.apple.quarantine "/Applications/Gaia.app" && open "/Applications/Gaia.app"
+   ```
+
+4. Click the **Gaia icon in the menu bar**. To use your own [provider API keys](#provider-api-keys), open **Settings → API Keys**, enter your keys, and click **Validate Keys**.
 
 ## Features
 

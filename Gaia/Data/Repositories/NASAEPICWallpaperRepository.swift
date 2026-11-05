@@ -3,14 +3,13 @@ import Foundation
 final class NASAEPICWallpaperRepository: WallpaperRepository {
     let source: WallpaperSource = .nasaEPIC
     private let httpClient: HTTPClient
-    private let apiKey: String
 
-    init(httpClient: HTTPClient, apiKey: String = "DEMO_KEY") {
+    init(httpClient: HTTPClient) {
         self.httpClient = httpClient
-        self.apiKey = apiKey
     }
 
     func fetchLatest() async throws -> [Wallpaper] {
+        let apiKey = try ProviderKeychain().wallpaperKey(for: .nasa)
         guard var components = URLComponents(string: "https://api.nasa.gov/EPIC/api/natural") else {
             throw NetworkError.invalidURL
         }
@@ -20,7 +19,7 @@ final class NASAEPICWallpaperRepository: WallpaperRepository {
         }
 
         let dtos = try await httpClient.decoded([NASAEPICDTO].self, from: Endpoint(url: url), decoder: JSONDecoder())
-        return dtos.map { $0.toDomain(apiKey: apiKey) }
+        return dtos.map { $0.toDomain() }
             .sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
     }
 
@@ -39,10 +38,10 @@ private struct NASAEPICDTO: Decodable, Sendable {
     let image: String
     let date: String
 
-    func toDomain(apiKey: String) -> Wallpaper {
+    func toDomain() -> Wallpaper {
         let dayPath = date.prefix(10).replacingOccurrences(of: "-", with: "/")
-        let imageURL = URL(string: "https://api.nasa.gov/EPIC/archive/natural/\(dayPath)/png/\(image).png?api_key=\(apiKey)")
-        let thumbURL = URL(string: "https://api.nasa.gov/EPIC/archive/natural/\(dayPath)/thumbs/\(image).jpg?api_key=\(apiKey)")
+        let imageURL = URL(string: "https://epic.gsfc.nasa.gov/archive/natural/\(dayPath)/png/\(image).png")
+        let thumbURL = URL(string: "https://epic.gsfc.nasa.gov/archive/natural/\(dayPath)/thumbs/\(image).jpg")
 
         return Wallpaper(
             id: "nasaEPIC_\(identifier.sanitizedFileName)",

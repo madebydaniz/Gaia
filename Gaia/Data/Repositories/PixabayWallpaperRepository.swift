@@ -7,19 +7,15 @@ protocol PixabayQueryConfigurable {
 final class PixabayWallpaperRepository: WallpaperRepository {
     let source: WallpaperSource = .pixabay
     private let httpClient: HTTPClient
-    private let apiKey: String?
     private var query: String
 
-    init(httpClient: HTTPClient, apiKey: String?, query: String = AppConfig.Defaults.pixabayQuery) {
+    init(httpClient: HTTPClient, query: String = AppConfig.Defaults.pixabayQuery) {
         self.httpClient = httpClient
-        self.apiKey = apiKey
         self.query = query
     }
 
     func fetchLatest() async throws -> [Wallpaper] {
-        guard let apiKey, !apiKey.isEmpty else {
-            throw NetworkError.unknown("Pixabay API key is missing.")
-        }
+        let apiKey = try ProviderKeychain().wallpaperKey(for: .pixabay)
         guard var components = URLComponents(string: "https://pixabay.com/api/") else {
             throw NetworkError.invalidURL
         }

@@ -17,6 +17,8 @@ struct SettingsView: View {
                     GeneralSettingsView()
                 case .wallpaper:
                     WallpaperSettingsView()
+                case .apiKeys:
+                    APIKeysSettingsView()
                 case .cache:
                     CacheSettingsView()
                 case .about:
@@ -35,6 +37,7 @@ struct SettingsView: View {
 private enum SettingsSection: String, CaseIterable, Identifiable {
     case general
     case wallpaper
+    case apiKeys
     case cache
     case about
     case support
@@ -45,6 +48,7 @@ private enum SettingsSection: String, CaseIterable, Identifiable {
         switch self {
         case .general: return "General"
         case .wallpaper: return "Wallpaper"
+        case .apiKeys: return "API Keys"
         case .cache: return "Cache"
         case .about: return "About"
         case .support: return "Support"
@@ -55,6 +59,7 @@ private enum SettingsSection: String, CaseIterable, Identifiable {
         switch self {
         case .general: return "gearshape"
         case .wallpaper: return "photo"
+        case .apiKeys: return "key"
         case .cache: return "externaldrive"
         case .about: return "info.circle"
         case .support: return "lifepreserver"

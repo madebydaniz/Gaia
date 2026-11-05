@@ -143,3 +143,17 @@
 "about.update.checking" = "Neueste Version wird gepruft...";
 "update.notification.title" = "Gaia-Update verfugbar";
 "update.notification.body" = "Version %1$@ steht zum Download bereit.";
+
+"API Keys" = "API-Schlüssel";
+"Validate Keys" = "Schlüssel prüfen";
+"apiKeys.help" = "Nur ausgefüllte Felder werden geprüft. Gültige Schlüssel werden im macOS-Schlüsselbund gespeichert. NASA APOD und EPIC verwenden denselben Schlüssel.";
+"apiKeys.remove" = "Gespeicherten Schlüssel entfernen";
+"apiKeys.checking" = "Wird geprüft …";
+"apiKeys.valid" = "Gültig und gespeichert.";
+"apiKeys.invalid" = "Der Anbieter hat den Schlüssel abgelehnt. Prüfe den Schlüssel und seine Berechtigungen.";
+"apiKeys.limit" = "Anfragelimit erreicht. Versuche es später erneut.";
+"apiKeys.unavailable" = "Der Schlüssel konnte beim Anbieter nicht geprüft werden. Versuche es später erneut.";
+"apiKeys.connection" = "Verbindung fehlgeschlagen. Prüfe deine Internetverbindung.";
+"apiKeys.keychainError" = "Zugriff auf den macOS-Schlüsselbund fehlgeschlagen. Prüfe, ob er entsperrt ist.";
+"apiKeys.missing" = "Füge deinen Schlüssel für %@ unter Einstellungen → API-Schlüssel hinzu.";
+"apiKeys.remove %@" = "Gespeicherten Schlüssel für %@ entfernen";

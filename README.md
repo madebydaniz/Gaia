@@ -83,18 +83,13 @@ No key required:
 - Wikimedia Commons
 - Picsum
 
-## Environment Variables
+## API Keys
 
-Set these in Xcode Scheme (`Run > Arguments > Environment Variables`) or your shell:
-
-```bash
-GAIA_NASA_API_KEY=...
-GAIA_PEXELS_API_KEY=...
-GAIA_PIXABAY_API_KEY=...
-GAIA_UNSPLASH_ACCESS_KEY=...
-```
-
-You can copy `.env.example` and fill values for local development.
+Open **Settings → API Keys**, enter your provider keys, then click **Validate Keys**.
+Gaia checks each nonempty field and saves accepted keys in the macOS Keychain.
+Both NASA sources share one key and use NASA's public demo key until you add your own.
+To rotate a key, replace it and validate again. Use the trash button to remove a saved key.
+If you previously configured keys through environment variables, enter them here once.
 
 ## Build & Run
 

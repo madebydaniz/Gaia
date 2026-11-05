@@ -143,3 +143,17 @@
 "about.update.checking" = "Checking latest release...";
 "update.notification.title" = "Gaia update available";
 "update.notification.body" = "Version %1$@ is ready to download.";
+
+"API Keys" = "API Keys";
+"Validate Keys" = "Validate Keys";
+"apiKeys.help" = "Only filled fields are checked. Accepted keys are saved in your macOS Keychain. NASA APOD and EPIC share one key.";
+"apiKeys.remove" = "Remove saved key";
+"apiKeys.checking" = "Checking…";
+"apiKeys.valid" = "Valid and saved.";
+"apiKeys.invalid" = "The provider rejected this key. Check the key and its permissions.";
+"apiKeys.limit" = "Rate limit reached. Try again later.";
+"apiKeys.unavailable" = "Could not verify the key with this provider. Try again later.";
+"apiKeys.connection" = "Could not connect. Check your connection and try again.";
+"apiKeys.keychainError" = "Could not access the macOS Keychain. Check that it is unlocked and try again.";
+"apiKeys.missing" = "Add your %@ key in Settings → API Keys.";
+"apiKeys.remove %@" = "Remove saved %@ key";

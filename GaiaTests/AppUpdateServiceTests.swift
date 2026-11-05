@@ -40,6 +40,10 @@ struct AppUpdateServiceTests {
 private struct MockHTTPClient: HTTPClient {
     let data: Data
 
+    func decoded<T: Decodable>(_ type: T.Type, from endpoint: Endpoint, decoder: JSONDecoder) async throws -> T {
+        try decoder.decode(type, from: data)
+    }
+
     func data(from endpoint: Endpoint) async throws -> (Data, HTTPURLResponse) {
         let response = HTTPURLResponse(
             url: endpoint.url,

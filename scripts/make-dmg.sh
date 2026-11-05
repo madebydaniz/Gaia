@@ -34,17 +34,22 @@ xcodebuild \
   -scheme "${SCHEME}" \
   -configuration "${CONFIGURATION}" \
   -destination "${DESTINATION}" \
-  build
+  -derivedDataPath DerivedData \
+  "$@" build
 
-echo "==> Locating built app"
-APP_PATH="$(find "${HOME}/Library/Developer/Xcode/DerivedData" -path "*/Build/Products/${CONFIGURATION}/${APP_NAME}.app" | head -n 1)"
-if [[ -z "${APP_PATH}" ]]; then
-  echo "Error: ${APP_NAME}.app not found in DerivedData."
-  exit 1
+APP_PATH="DerivedData/Build/Products/${CONFIGURATION}/${APP_NAME}.app"
+if [[ -n "${APP_SIGNING_IDENTITY:-}" ]]; then
+  codesign --force --deep --options runtime --sign "${APP_SIGNING_IDENTITY}" "${APP_PATH}"
 fi
 
 mkdir -p "${DIST_DIR}"
-rm -f "${FINAL_DMG_PATH}" "${RW_DMG_PATH}"
+rm -f "${FINAL_DMG_PATH}" "${RW_DMG_PATH}" "${DIST_DIR}/${APP_NAME}.app.zip"
+ditto -c -k --sequesterRsrc --keepParent "${APP_PATH}" "${DIST_DIR}/${APP_NAME}.app.zip"
+
+echo "==> Preparing DMG payload"
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}"
+ditto "${APP_PATH}" "${TMP_DIR}/${APP_NAME}.app"
 
 # Resize background to exactly the window size at 72 DPI (standard 1x)
 # This guarantees the background always covers the full DMG window
@@ -70,7 +75,8 @@ if command -v create-dmg >/dev/null 2>&1; then
     --app-drop-link "${APPS_X}" "${ICON_Y}" \
     --background "${BACKGROUND_PATH}" \
     "${FINAL_DMG_PATH}" \
-    "${APP_PATH}"
+    "${TMP_DIR}"
+  rm -rf "${TMP_DIR}"
   rm -f "${BACKGROUND_PATH}"
   echo "==> Done"
   echo "DMG: ${FINAL_DMG_PATH}"
@@ -78,11 +84,6 @@ if command -v create-dmg >/dev/null 2>&1; then
 fi
 
 echo "==> create-dmg not found; using built-in fallback"
-rm -rf "${TMP_DIR}"
-mkdir -p "${TMP_DIR}"
-
-echo "==> Preparing DMG payload"
-cp -R "${APP_PATH}" "${TMP_DIR}/${APP_NAME}.app"
 ln -s /Applications "${TMP_DIR}/Applications"
 
 echo "==> Creating read-write DMG"

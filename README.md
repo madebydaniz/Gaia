@@ -108,7 +108,7 @@ Or with CLI:
 xcodebuild -project Gaia.xcodeproj -scheme Gaia -destination 'platform=macOS' build
 ```
 
-Create a release DMG locally:
+Build both release packages (`dist/Gaia.dmg` and `dist/Gaia.app.zip`) locally:
 
 ```bash
 ./scripts/make-dmg.sh

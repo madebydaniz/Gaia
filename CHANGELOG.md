@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.12](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.11...gaia-v0.1.12) (2026-11-05)
+
+
+### Chores
+
+* **version:** sync MARKETING_VERSION to 0.1.11 ([d2c3f65](https://github.com/madebydaniz/Gaia/commit/d2c3f65b9766f6283f17a6c98e2bf23794b149ea))
+
 ## [0.1.11](https://github.com/madebydaniz/Gaia/compare/gaia-v0.1.10...gaia-v0.1.11) (2026-11-05)
 
 

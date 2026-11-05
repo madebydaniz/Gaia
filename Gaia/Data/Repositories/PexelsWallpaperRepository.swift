@@ -7,19 +7,15 @@ protocol PexelsQueryConfigurable {
 final class PexelsWallpaperRepository: WallpaperRepository {
     let source: WallpaperSource = .pexels
     private let httpClient: HTTPClient
-    private let apiKey: String?
     private var query: String
 
-    init(httpClient: HTTPClient, apiKey: String?, query: String = AppConfig.Defaults.pexelsQuery) {
+    init(httpClient: HTTPClient, query: String = AppConfig.Defaults.pexelsQuery) {
         self.httpClient = httpClient
-        self.apiKey = apiKey
         self.query = query
     }
 
     func fetchLatest() async throws -> [Wallpaper] {
-        guard let apiKey, !apiKey.isEmpty else {
-            throw NetworkError.unknown("Pexels API key is missing.")
-        }
+        let apiKey = try ProviderKeychain().wallpaperKey(for: .pexels)
         guard var components = URLComponents(string: "https://api.pexels.com/v1/search") else {
             throw NetworkError.invalidURL
         }

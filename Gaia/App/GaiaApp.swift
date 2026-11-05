@@ -67,14 +67,13 @@ private struct AppDependencies {
                 remoteEndpoint: repositoryConfig.googleEarthRemoteURL,
                 httpClient: httpClient
             ),
-            .nasaAPOD: NASAAPODWallpaperRepository(httpClient: httpClient, apiKey: repositoryConfig.nasaAPIKey),
-            .nasaEPIC: NASAEPICWallpaperRepository(httpClient: httpClient, apiKey: repositoryConfig.nasaAPIKey),
-            .pexels: PexelsWallpaperRepository(httpClient: httpClient, apiKey: repositoryConfig.pexelsAPIKey),
-            .pixabay: PixabayWallpaperRepository(httpClient: httpClient, apiKey: repositoryConfig.pixabayAPIKey),
+            .nasaAPOD: NASAAPODWallpaperRepository(httpClient: httpClient),
+            .nasaEPIC: NASAEPICWallpaperRepository(httpClient: httpClient),
+            .pexels: PexelsWallpaperRepository(httpClient: httpClient),
+            .pixabay: PixabayWallpaperRepository(httpClient: httpClient),
             .wikimediaCommons: WikimediaCommonsWallpaperRepository(httpClient: httpClient),
             .unsplash: UnsplashWallpaperRepository(
                 httpClient: httpClient,
-                accessKey: repositoryConfig.unsplashAPIKey,
                 category: preferences.unsplashCategory
             ),
             .picsum: PicsumWallpaperRepository(httpClient: httpClient)

@@ -3,14 +3,13 @@ import Foundation
 final class NASAAPODWallpaperRepository: WallpaperRepository {
     let source: WallpaperSource = .nasaAPOD
     private let httpClient: HTTPClient
-    private let apiKey: String
 
-    init(httpClient: HTTPClient, apiKey: String = "DEMO_KEY") {
+    init(httpClient: HTTPClient) {
         self.httpClient = httpClient
-        self.apiKey = apiKey
     }
 
     func fetchLatest() async throws -> [Wallpaper] {
+        let apiKey = try ProviderKeychain().wallpaperKey(for: .nasa)
         guard var components = URLComponents(string: "https://api.nasa.gov/planetary/apod") else {
             throw NetworkError.invalidURL
         }

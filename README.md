@@ -67,34 +67,15 @@ Download the latest build from:
 - Local disk cache in Application Support
 - `UserDefaults`-based preferences
 
-## Source Notes
+## Provider API keys
 
-Some sources require API keys:
+Open **Settings → API Keys** to add, update, or remove a provider key in the installed app.
 
-- NASA APOD / NASA EPIC
-- Pexels
-- Pixabay
-- Unsplash
+- **Pexels** and **Pixabay** use your API key. **Unsplash** uses your Access Key.
+- **NASA APOD** and **NASA EPIC** share one key. They use NASA’s public demo key until you save your own.
+- **Bing**, **Google Earth fallback data**, **Wikimedia Commons**, and **Picsum** work without a key.
 
-No key required:
-
-- Bing
-- Google Earth fallback data
-- Wikimedia Commons
-- Picsum
-
-## Environment Variables
-
-Set these in Xcode Scheme (`Run > Arguments > Environment Variables`) or your shell:
-
-```bash
-GAIA_NASA_API_KEY=...
-GAIA_PEXELS_API_KEY=...
-GAIA_PIXABAY_API_KEY=...
-GAIA_UNSPLASH_ACCESS_KEY=...
-```
-
-You can copy `.env.example` and fill values for local development.
+Click **Validate Keys** to check each filled field. Gaia saves accepted keys in the macOS Keychain and uses them on the next wallpaper request. If a replacement fails validation, the previously saved key stays active. Use the trash button beside a provider to remove its saved key.
 
 ## Build & Run
 

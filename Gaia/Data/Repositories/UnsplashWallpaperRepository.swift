@@ -7,20 +7,16 @@ protocol UnsplashCategoryConfigurable {
 final class UnsplashWallpaperRepository: WallpaperRepository {
     let source: WallpaperSource = .unsplash
     private let httpClient: HTTPClient
-    private let accessKey: String?
     private let throttler = UnsplashRequestThrottler.shared
     private var category: String
 
-    init(httpClient: HTTPClient, accessKey: String?, category: String = AppConfig.Defaults.unsplashCategory) {
+    init(httpClient: HTTPClient, category: String = AppConfig.Defaults.unsplashCategory) {
         self.httpClient = httpClient
-        self.accessKey = accessKey
         self.category = category
     }
 
     func fetchLatest() async throws -> [Wallpaper] {
-        guard let accessKey, !accessKey.isEmpty else {
-            throw NetworkError.unknown("Unsplash access key is missing.")
-        }
+        let accessKey = try ProviderKeychain().wallpaperKey(for: .unsplash)
         try await throttler.checkAllowance()
 
         guard var components = URLComponents(string: "https://api.unsplash.com/search/photos") else {

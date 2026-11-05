@@ -8,7 +8,7 @@
     ".": {
       "component": "gaia",
       "extra-files": [
-        "Gaia.xcodeproj/project.pbxproj"
+        "Version.xcconfig"
       ]
     }
   },
@@ -35,7 +35,8 @@
     },
     {
       "type": "chore",
-      "section": "Chores"
+      "section": "Chores",
+      "hidden": true
     },
     {
       "type": "test",
